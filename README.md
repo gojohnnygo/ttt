@@ -1,46 +1,72 @@
-# Getting Started with Create React App
+# Getting Started with TTT (tic-tac-toe)
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+## Quick Demo
+```
+clone git@github.com:gojohnnygo/ttt.git
+cd ttt
+yarn install
+yarn start
+```
 
-## Available Scripts
+## Features
+1. FUN - Endless tic tac toe fun with friends
+2. EASY TO USE - Drop it into any React + Typescript project
+3. FLEXIBLE - Play traditional 3x3 tic tac toe up or up 20x20. The game engine is flexible and can handle different types of game play with just a little tweaking. Do you want the win condition to be different than the board size? No problem! Do you want to play Connect Four? Doable! Pull requests are welcome. :) 
 
-In the project directory, you can run:
+## How to Use in Your React + TypeScript Project
+1. Add the `ttt` folder to your project
+1. Import and use the componet
 
-### `yarn start`
+```
+import Board from './ttt/Board';
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+export default function App() {
+  <Board />
+}
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+```
 
-### `yarn test`
+## How to Use Your Own Controls
+By default TTT comes with three controls:
+1. Resetting to default
+2. Incrementing board size (max 20x20)
+3. Decrementing board size (min 3x3)
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+If you want to implement your own controls, you can easily do so with Refs. Functions exposed to you are:
+1. `reset()`
+2. `increment()`
+3. `decrement()`
 
-### `yarn build`
+```
+import Board, {BoardRef} from './ttt/Board';
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+export default function App() {
+  const boardRef = useRef<BoardRef>(null);
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+  return (
+    <div className="app">
+      <Board ref={boardRef}/>
+      <div>
+        <button onClick={() => boardRef.current?.reset()}>
+          Reset Default
+        </button>
+        <button
+          onClick={() => boardRef.current?.increment()}
+        >
+          Increase Board Size
+        </button>
+        <button
+          onClick={() => boardRef.current?.decrement()}
+        >
+          Decrease Board Size
+        </button>
+      </div>
+    </div>
+  );
+}
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+```
 
-### `yarn eject`
+## Shout Outs
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
-
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
-
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
+This demo was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
