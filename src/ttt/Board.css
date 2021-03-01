@@ -1,0 +1,8 @@
+.board {
+  display: inline-flex;
+  flex-direction: column;
+}
+
+.board-row {
+  display: inline-flex;
+}
