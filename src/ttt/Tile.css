@@ -1,0 +1,28 @@
+.tile {
+  align-items: center;
+  cursor: pointer;
+  display: flex;
+  font-size: 48px;
+  font-weight: 700;
+  height: 100px;
+  justify-content: center;
+  width: 100px;
+}
+
+.tile:not(:last-child) {
+  border-right: 4px solid black;
+}
+
+.board-row:not(:last-child) .tile {
+  border-bottom: 4px solid black;
+}
+
+
+.is-disabled {
+  cursor: default;
+  pointer-events: none;
+}
+
+.is-sequence {
+  background-color: #EB7100;
+}
